@@ -2,7 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebas
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js"
 import { renderTablas } from "./modulos/renderTablas.js";
 import { renderMenu } from "./modulos/renderMenu.js";
-import { obtencionDeDatos } from "./modulos/obtencionDeDatos.js";
+import { renderGrafico } from "./modulos/renderGrafico.js";
+import { obtencionDeDatos, renderDatosTabla } from "./modulos/obtencionDeDatos.js";
 //Docuemntacion de proyecto
 const firebaseConfig = {
     apiKey: "AIzaSyBloNFnJLYK42AYaadMMvDeH18Wp14TN8k",
@@ -16,7 +17,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
+const firstRender = async () => {
+    const datos = await obtencionDeDatos()
+    renderDatosTabla(datos)
+    document.getElementById("tabla-container").style.display = 'block';
+    document.getElementById("grafico-container").style.display = 'none';
+}
 // modulos
 renderMenu()
 renderTablas()
-obtencionDeDatos()
+firstRender()
+renderGrafico()
+
+

@@ -18,8 +18,17 @@ export const obtencionDeDatos = async (type) => {
     if(q&&q!==null){
         const querySnapshot = await getDocs(q);
         const datosDeLaTabla = await querySnapshot.docs.map(doc => doc.data());    
-        const espacioDatos = document.getElementById("espacioDatos")
-        espacioDatos.innerHTML = "";
+        return datosDeLaTabla;
+        
+    }else{
+        return []
+    }
+}
+
+export const renderDatosTabla = async (datosDeLaTabla, type) => {
+    const espacioDatos = document.getElementById("espacioDatos")
+    espacioDatos.innerHTML = "";
+    if(datosDeLaTabla&&datosDeLaTabla!==null&&datosDeLaTabla.length>0){
         let i = 0
         switch (type) {
             case "fecha":
@@ -73,9 +82,5 @@ export const obtencionDeDatos = async (type) => {
                 });
                 break;
         }
-        
-    }else{
-        const espacioDatos = document.getElementById("espacioDatos")
-        espacioDatos.innerHTML = "";
     }
 }
