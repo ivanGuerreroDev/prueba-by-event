@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js"
+import { renderTablas } from "./modulos/renderTablas.js";
+import { renderMenu } from "./modulos/renderMenu.js";
 import { obtencionDeDatos } from "./modulos/obtencionDeDatos.js";
 //Docuemntacion de proyecto
 const firebaseConfig = {
@@ -15,4 +17,6 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 // modulos
+renderMenu()
+renderTablas()
 obtencionDeDatos()
